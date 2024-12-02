@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Welcome to Know My Recipe</title>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap");
+			body {
+				/* height: 100%; */
+				font-family: "Roboto", sans-serif;
+				margin: 0;
+				padding: 0;
+				/* display: flex; */
+				/* flex-direction: column; */
+				align-items: center;
+				background-color: #f8e9a1;
+			}
+
+			header {
+				font-family: "Pacifico";
+				font-size: 1em;
+				width: 100%;
+				text-align: center;
+				padding: 10px 0;
+				background-color: #355c7d;
+				color: white;
+			}
+
+			.container {
+				display: flex;
+				justify-content: space-between;
+				align-items: flex-start;
+				width: 80%;
+				/* max-width: 1200px; Adjust based on your layout requirements */
+				margin-top: 0px;
+				/* flex-grow: 1; */
+			}
+
+			.sidebar,
+			.sidebar-right {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				background-color: #355c7d;
+				padding: 20px;
+				gap: 20px;
+				max-width: calc(100vw * 0.2);
+				height: 100vh;
+			}
+
+			.main-content {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				min-width: 100%;
+				/* margin: 0 20px; */
+				max-height: 100vh;
+				overflow-x: scroll;
+				scrollbar-width: none;
+			}
+
+			.recipe-card {
+				background-color: white;
+				padding: 20px;
+				margin: 20px 0;
+				border-radius: 10px;
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+				width: 100%;
+				max-width: 500px; /* Adjust the card size */
+			}
+
+			.recipe-card img {
+				width: 100%; /* Adjust based on your preference */
+				border-radius: 10px;
+				margin-bottom: 15px;
+			}
+
+			.button {
+				background-color: #355c7d;
+				color: #ffffff;
+				padding: 10px 15px;
+				border-radius: 5px;
+				cursor: pointer;
+				text-decoration: none;
+				transition: background-color 0.3s ease;
+			}
+
+			.button:hover {
+				background-color: #f67280;
+			}
+			.logo {
+				display: flex;
+				align-items: center;
+				gap: 10px;
+				padding: 15px;
+				color: white;
+			}
+			.navbar {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				width: 100%;
+				background-color: #355c7d;
+				color: white;
+			}
+			.logo-img {
+				height: 75px;
+				width: 75px;
+			}
+			.title {
+				font-size: 2em;
+				text-transform: uppercase;
+				font-weight: bold;
+				padding-left: 0.75em;
+			}
+			.links {
+				display: flex;
+				flex-direction: column;
+
+				gap: 20px;
+			}
+			#dp {
+				align-items: center;
+				height: 150px;
+				width: 150px;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- <header>
+        <h1>Know My Recipe</h1>
+    </header> -->
+
+		<!-- <nav class="navbar">
+        <div class="logo">
+            <img src="/assets/dp.jpg" alt="Logo" class="logo-img" style="border-radius: 50%;">
+            <div class="title">Know My Recipe</div>
+        </div>
+        <div class="links">
+            <a href="profile.html" class="button">Profile</a>
+            <a href="profile.html" class="button">Logout</a>
+            <a href="new-recipe.html" class="button">New Recipe</a>
+            <a href="saved-recipes.html" class="button">Saved Recipes</a>
+            <a href="explore.html" class="button">Explore</a>
+        </div>
+    </nav> -->
+
+		<div class="container">
+			<div class="sidebar">
+				<div class="logo">
+					<img
+						src="/assets/dp.jpg"
+						alt="Logo"
+						class="logo-img"
+						style="border-radius: 50%"
+					/>
+					<div class="title">Know My Recipe</div>
+				</div>
+				<div class="links">
+					<a href="profile.html" class="button">Profile</a>
+					<a href="profile.html" class="button">Logout</a>
+					<a href="new-recipe.html" class="button">New Recipe</a>
+					<a href="saved-recipes.html" class="button">Saved Recipes</a>
+					<a href="explore.html" class="button">Explore</a>
+				</div>
+			</div>
+
+			<div class="main-content">
+				<div class="recipe-card">
+					<img src="/assets/spag.jpg" alt="Recipe Image Placeholder" />
+					<h2>Recipe of the Day</h2>
+					<p>
+						Discover the taste of traditional Italian cuisine with the featured
+						recipe: <strong>Classic Spaghetti Carbonara</strong> posted by @<u
+							>Jessie_24</u
+						>
+					</p>
+					<button class="button">Read More</button>
+				</div>
+				<!-- Additional recipe cards -->
+				<div class="recipe-card">
+					<img src="/assets/veg.png" alt="Recipe Image Placeholder" />
+					<h2>Vegetarian Delight</h2>
+					<p>
+						Enjoy the freshness of garden vegetables with our Vegetarian Delight
+						Salad.
+					</p>
+					<button class="button">Read More</button>
+				</div>
+				<div class="recipe-card">
+					<img
+						src="https://via.placeholder.com/500x300"
+						alt="Recipe Image Placeholder"
+					/>
+					<h2>Quick and Easy Snacks</h2>
+					<p>
+						Whip up some quick and easy snacks perfect for any time of the day.
+					</p>
+					<button class="button">Read More</button>
+				</div>
+			</div>
+
+			<!-- <div class="sidebar sidebar-right">
+            <a href="new-recipe.html" class="button">New Recipe</a>
+            <a href="saved-recipes.html" class="button">Saved Recipes</a>
+            <a href="explore.html" class="button">Explore</a>
+        </div> -->
+		</div>
+	</body>
+</html>

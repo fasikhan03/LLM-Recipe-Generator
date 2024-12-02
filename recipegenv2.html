@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"
+    />
+    <!-- Ionicons for social media icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" src="/know-my-recipe/assets/favi.png" />
+    <title>Create Your Own - Know My Recipe</title>
+    <style>
+      .footer-clean {
+        width: 100%; /* Ensure footer takes full width of the viewport */
+        background-color: #fff;
+        padding: 20px 0;
+        color: #4b4c4d;
+        text-align: center;
+        border-top: 1px solid #bbb;
+        position: relative; /* Helps position it at the bottom */
+        margin-top: auto;
+      }
+
+      .footer-clean ul {
+        padding: 0;
+        list-style: none;
+        line-height: 1.6;
+        font-size: 14px;
+        margin-bottom: 0;
+      }
+
+      .footer-clean ul a {
+        color: inherit;
+        text-decoration: none;
+        opacity: 0.8;
+      }
+
+      .footer-clean ul a:hover {
+        opacity: 1;
+      }
+
+      .footer-clean .item {
+        margin-bottom: 20px;
+      }
+
+      .footer-clean .item h3 {
+        margin-top: 0;
+        margin-bottom: 10px;
+        font-weight: bold;
+        font-size: 16px;
+      }
+
+      .footer-clean .item.social {
+        text-align: center;
+      }
+
+      .footer-clean .item.social > a {
+        font-size: 24px;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        display: inline-block;
+        text-align: center;
+        border-radius: 50%;
+        border: 1px solid #ccc;
+        margin: 0 8px;
+        color: #555;
+        opacity: 0.75;
+      }
+
+      .footer-clean .item.social > a:hover {
+        opacity: 0.9;
+      }
+
+      .footer-clean .social .icon {
+        font-size: 20px;
+        margin-top: 10px;
+      }
+
+      .footer-clean .social .icon ion-icon {
+        vertical-align: middle;
+      }
+      body {
+        font-family: "Arial", sans-serif;
+        background: #f4f4f9;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      #header {
+        text-align: center;
+        width: 100%;
+        padding: 20px 0;
+        background-color: #355c7d;
+        color: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      }
+      #header h1 {
+        margin: 0;
+        font-size: 2.5em;
+        color: white; /* Ensure the text color is suitable for glowing effect */
+        text-shadow: 0 0 3px #f8e9a1;
+      }
+      #helperText {
+        font-size: 1.2em;
+        color: #f8e9a1;
+        margin-top: 10px;
+      }
+      #container {
+        flex: 1;
+        background: #f8eaa18e;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 1050px;
+        margin-top: 20px;
+        margin-bottom: 40px; /* Add bottom margin to push the footer down */
+      }
+      input[type="text"],
+      button {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+      }
+      button {
+        align-items: center;
+        width: 100%;
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      #recipeOutput {
+        text-align: left;
+        background: #f9f9f9;
+        padding: 10px;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        margin-top: 10px;
+      }
+      #dynamicMessage {
+        padding-top: 20px;
+      }
+      html,
+      body {
+        height: 100%; /* Make sure html and body cover full viewport height */
+        width: 100%; /* Ensure they take full width */
+        margin: 0; /* Remove default margin */
+        padding: 0; /* Remove default padding */
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh; /* Ensures at least the full height of the viewport */
+      }
+
+      #container {
+        flex: 1; /* This will make the container grow and consume any available space */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 70%; /* Ensures the container takes the full width */
+      }
+
+      .footer-clean {
+        width: 100%; /* Ensures footer takes full width */
+        background-color: #355b7d6d;
+        padding: 20px 0;
+        color: #4b4c4d;
+        text-align: center;
+        border-top: 1px solid #bbb;
+        position: relative; /* Helps position it at the bottom */
+        margin-top: auto; /* Pushes it to the bottom if there is space */
+      }
+    </style>
+  </head>
+  <body>
+    <div id="header">
+      <h1>Know My Recipe</h1>
+      <p id="helperText">
+        Enter ingredients below to generate a custom recipe!
+      </p>
+    </div>
+    <p id="dynamicMessage"></p>
+    <div id="container">
+      <p id="step1">Let's get started! First, think of a few ingredients.</p>
+      <input
+        id="ingredientInput"
+        type="text"
+        placeholder="Enter ingredients separated by commas"
+        oninput="showStep2()"
+      />
+      <p id="step2" style="display: none">
+        Great! Now that you've entered your ingredients, click the button below
+        and let us do the magic.
+      </p>
+      <button onclick="generateRecipe()" style="display: none">
+        Generate Recipe
+      </button>
+      <p id="loadingMessage" style="display: none">
+        Crafting your recipe, please wait...
+      </p>
+      <p id="step3" style="display: none">Enjoy your delicious recipe!</p>
+      <div id="recipeOutput"></div>
+      <!-- Recipe will be displayed here -->
+    </div>
+    <div class="footer-clean">
+      <div>
+        <p>Know My Recipe &#169; 2024</p>
+      </div>
+      <footer>
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-sm-4 col-md-3 item">
+              <h3>Recipes</h3>
+              <ul>
+                <li><a href="#">Browse Recipes</a></li>
+                <li><a href="#">Submit a Recipe</a></li>
+                <li><a href="#">Top Rated</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-4 col-md-3 item">
+              <h3>About</h3>
+              <ul>
+                <li><a href="#">Our Story</a></li>
+                <li><a href="#">Team</a></li>
+                <li><a href="#">Contact Us</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-4 col-md-3 item">
+              <h3>Connect</h3>
+              <ul>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Instagram</a></li>
+                <li><a href="#">Twitter</a></li>
+              </ul>
+            </div>
+            <div class="col-lg-3 item social">
+              <a href="#"><i class="icon ion-social-facebook"></i></a>
+              <a href="#"><i class="icon ion-social-instagram"></i></a>
+              <a href="#"><i class="icon ion-social-twitter"></i></a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+
+    <script type="text/javascript">
+      document.addEventListener("DOMContentLoaded", function () {
+        const messages = [
+          "Feeling adventurous? Try combining unusual ingredients!",
+          "Play it safe or spice things up – the choice is yours!",
+          "Mix and match ingredients to discover new flavors.",
+          "Not sure what to cook? Let randomness decide!",
+          "Enter your favorite ingredients and get creative!",
+        ];
+        const messageContainer = document.getElementById("dynamicMessage");
+        let messageIndex = 0;
+
+        function displayNextMessage() {
+          messageContainer.textContent =
+            messages[messageIndex++ % messages.length];
+        }
+
+        // Initially display a message
+        displayNextMessage();
+
+        // Update the message every 2 seconds
+        setInterval(displayNextMessage, 4000);
+      });
+
+      function showStep2() {
+        const input = document.getElementById("ingredientInput").value.trim();
+        if (input.length > 0) {
+          document.getElementById("step2").style.display = "block";
+          document.querySelector("button").style.display = "block";
+        }
+      }
+
+      function generateRecipe() {
+        document.getElementById("loadingMessage").style.display = "block";
+        const apiUrl = "https://api.openai.com/v1/chat/completions";
+        const apiKey = "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";
+        const prompt = document.getElementById("ingredientInput").value.trim();
+        const recipeOutput = document.getElementById("recipeOutput");
+
+        fetch(apiUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${apiKey}`,
+          },
+          body: JSON.stringify({
+            messages: [
+              {
+                role: "system",
+                content: "Generate a recipe based on these ingredients",
+              },
+              { role: "user", content: prompt },
+            ],
+            max_tokens: 1024,
+            temperature: 0.2,
+            model: "gpt-4-turbo",
+          }),
+        })
+          .then((response) => response.json())
+          .then((output) => {
+            const markdownText = output.choices[0].message.content;
+            const converter = new showdown.Converter();
+            const htmlText = converter.makeHtml(markdownText);
+            document.getElementById("loadingMessage").style.display = "none"; // Hide loading message
+            document.getElementById("step3").style.display = "block";
+            recipeOutput.innerHTML = htmlText;
+          })
+          .catch((error) => {
+            console.log(error);
+            recipeOutput.textContent =
+              "Failed to generate recipe. Please try again.";
+            document.getElementById("loadingMessage").style.display = "none";
+          });
+      }
+    </script>
+  </body>
+</html>

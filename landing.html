@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to Know My Recipe</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap");
+
+      body {
+        font-family: "Roboto", sans-serif;
+        background-color: #f8e9a1;
+        color: #f76c6c;
+        padding: 20px;
+        /*background-image: url(/assets/cooking.jpg);*/
+        background-size: cover;
+        background-position: center;
+      }
+
+      .welcome-container {
+        text-align: center;
+        max-width: 700px;
+        margin: auto;
+        margin-top: 50px;
+      }
+
+      .welcome-container h1 {
+        font-family: "Pacifico", cursive;
+        color: #355c7d;
+        font-size: 3em;
+      }
+
+      .welcome-container p {
+        font-size: 1.2em;
+        margin-bottom: 40px;
+      }
+
+      a.button {
+        display: inline-block;
+        background-color: #f67280;
+        color: #ffffff;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-family: "Pacifico", cursive;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+        margin: 10px;
+      }
+
+      a.button:hover {
+        background-color: #0056b3;
+      }
+      #features {
+        margin-top: 50px;
+        text-align: center;
+      }
+      #feature-slide {
+        display: none;
+      }
+      #feature-slide.active {
+        display: block;
+      }
+      .welcome-container,
+      .features,
+      footer {
+        text-align: center;
+        max-width: 700px;
+        margin: auto;
+      }
+
+      .welcome-container h1,
+      .features h2 {
+        font-family: "Pacifico", cursive;
+        color: #355c7d;
+      }
+
+      a.button {
+        background-color: #f67280;
+        color: #ffffff;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-family: "Pacifico", cursive;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+        margin: 10px;
+      }
+
+      a.button:hover {
+        background-color: #0056b3;
+      }
+
+      footer {
+        margin-top: auto;
+        padding: 200px 0;
+      }
+
+      /* Features Slideshow Styles */
+      #feature-slideshow {
+        position: relative;
+        max-width: 700px;
+        margin: auto;
+      }
+
+      .feature-slide {
+        animation: fadeEffect 3s infinite;
+        display: none;
+      }
+
+      .feature-slide.active {
+        display: block;
+      }
+
+      @keyframes fadeEffect {
+        from {
+          opacity: 0.4;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      #image-slideshow {
+        max-width: 700px;
+        margin: 20px auto;
+        height: 200px; /* Adjust based on your image sizes */
+        background-color: #ddd; /* Placeholder color, remove or replace with actual images */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="welcome-container">
+      <h1>Welcome to Know My Recipe!</h1>
+      <p>
+        Discover new recipes, share your culinary adventures, and become a part
+        of our food lover's community.
+      </p>
+      <a href="signup.html" class="button">Join Now</a>
+      <a href="recipe.html" class="button">Add a New Recipe</a>
+      <div id="image-slideshow">
+        <!-- Insert <img> tags or use JavaScript to dynamically add images here -->
+        <p>Food Images Coming Soon...</p>
+      </div>
+    </div>
+    <section class="features" id="features">
+      <h2>Features</h2>
+      <div id="feature-slideshow">
+        <div class="feature-slide active">
+          <h3>LLM-Powered Recipe Generator</h3>
+          <p>
+            Discover new recipes with the help of AI, personalized to your
+            preferences.
+          </p>
+        </div>
+        <div class="feature-slide">
+          <h3>Ingredient Alternatives</h3>
+          <p>Find substitutes for any ingredients to fit your dietary needs.</p>
+        </div>
+        <div class="feature-slide">
+          <h3>Custom Recommendations</h3>
+          <p>
+            Get recipe recommendations based on your tastes and previous
+            searches.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2024 Know My Recipe. All rights reserved.</p>
+    </footer>
+
+    <script>
+      let slideIndex = 0;
+      showSlides();
+
+      function showSlides() {
+        let i;
+        let slides = document.getElementsByClassName("feature-slide");
+        for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {
+          slideIndex = 1;
+        }
+        slides[slideIndex - 1].style.display = "block";
+        setTimeout(showSlides, 3000); // Change image every 3 seconds
+      }
+    </script>
+  </body>
+</html>
